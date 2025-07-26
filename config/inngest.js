@@ -1,10 +1,8 @@
 import { Inngest } from "inngest";
-import connectDB from "./db.js";              
-import User from "../models/User.js"; 
-
+import connectDB from "./db.js";               
+import User from "../models/User.js";          
 
 export const inngest = new Inngest({ id: "quickcart-next" });
-
 
 export const syncUserCreation = inngest.createFunction(
   { id: "sync-user-from-clerk" },
@@ -24,7 +22,6 @@ export const syncUserCreation = inngest.createFunction(
   }
 );
 
-
 export const syncUserUpdation = inngest.createFunction(
   { id: "update-user-from-clerk" },
   { event: "clerk/user.updated" },
@@ -42,7 +39,6 @@ export const syncUserUpdation = inngest.createFunction(
     await User.findByIdAndUpdate(id, userData);
   }
 );
-
 
 export const syncUserDeletion = inngest.createFunction(
   { id: "delete-user-with-clerk" },
